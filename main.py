@@ -1,5 +1,5 @@
 import random
-
+from importlib.metadata import packages_distributions
 
 # Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.
 masyvas = []
@@ -169,10 +169,51 @@ for reiksme, kiekis in reiksmiu_skaicius.items():
     print(f"{reiksme}: {kiekis}")
 
 # Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 100 iki 999. Masyvų ilgiai 100. Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).
-masyvas_1 = []
-masyvas_2 = []
+masyvas_7 = []
+masyvas_8 = []
 
-for i in range(100):
-    sk_6 = random.randint(100,999)
-    masyvas_1.append(i)
-print(masyvas_1)
+# Pirmas masyvas su unikaliomis reikšmėmis
+while len(masyvas_7) < 100:
+    sk_6 = random.randint(100, 999)
+    if sk_6 not in masyvas_7:
+        masyvas_7.append(sk_6)
+
+# Antras masyvas su unikaliomis reikšmėmis
+while len(masyvas_8) < 100:
+    sk_7 = random.randint(100, 999)
+    if sk_7 not in masyvas_8:
+        masyvas_8.append(sk_7)
+
+print("Pirmas masyvas:", masyvas_7)
+print("Antras masyvas:", masyvas_8)
+
+# Sugeneruokite masyvą, kuris būtų sudarytas iš reikšmių, kurios yra pirmame 6 uždavinio masyve, bet nėra antrame 6 uždavinio masyve
+# masyvas_1 = [2,4,6,9]
+# masyvas_2 = [2,4,5,9]
+# unikalios_reiksmes_7 = []
+#
+# # unikalios_reiksmes = [sk for sk in masyvas_1 if sk not in masyvas_2]
+#
+# for sk_7 in masyvas_1:
+#     if  sk_7 not in masyvas_2:
+#         unikalios_reiksmes_7.append((sk_7))
+# print("Reikšmės, kurios yra pirmame masyve, bet nėra antrame:", unikalios_reiksmes_7)
+# masyvas_7 = []
+# masyvas_8 = []
+unikalios_reiksmes_7 = []
+
+# unikalios_reiksmes = [sk for sk in masyvas_1 if sk not in masyvas_2]
+
+for sk_8 in masyvas_7:
+    if  sk_8 not in masyvas_8:
+        unikalios_reiksmes_7.append((sk_8))
+print("Reikšmės, kurios yra pirmame masyve, bet nėra antrame:", unikalios_reiksmes_7)
+
+# Sugeneruokite masyvą iš elementų, kurie kartojasi abiejuose 6 uždavinio masyvuose.
+pasikartojancios_reiksmes_9 = []
+for sk_9 in masyvas_7:
+    if sk_9 in masyvas_8 and sk_9 not in pasikartojancios_reiksmes_9:
+        pasikartojancios_reiksmes_9.append(sk_9)
+print("Reiksmes, kurios kartojasi abiejuose masyvuose:", pasikartojancios_reiksmes_9)
+
+# Sugeneruokite 10 skaičių masyvą pagal taisyklę: Du pirmi skaičiai- atsitiktiniai nuo 5 iki 25. Trečias, pirmo ir antro suma. Ketvirtas- antro ir trečio suma. Penktas trečio ir ketvirto suma ir t.t.
