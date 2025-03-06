@@ -95,7 +95,7 @@ for raide in range(0,200):
     raidziu_masyvas.append(raide)
 raidziu_rusiavimas = sorted((raidziu_masyvas))
 print(raidziu_rusiavimas)
-print("+++++++=")
+print("++++++++")
 # Sugeneruokite 3 masyvus pagal 3 uždavinio sąlygą. Sudėkite masyvus, sudėdami atitinkamas reikšmes. Paskaičiuokite kiek unikalių reikšmių kombinacijų gavote
 # galimos_raides = ['a','b','c','d']
 # galimos_raides_2 = ['a','b','c','d']
@@ -103,7 +103,7 @@ print("+++++++=")
 # raidziu_masyvas = []
 # raidziu_masyvas_2 = []
 # raidziu_masyvas_3 = []
-bendras_raidziu_masyvas = []
+
 # unikali_reiksme = []
 # reiksmiu_sk = 0
 # for raide_1 in range(0,200):
@@ -138,7 +138,7 @@ bendras_raidziu_masyvas = []
 # print("Unikalios reikšmės ir jų pasikartojimai:")
 # for reiksme, kiekis in reiksmiu_skaicius.items():
 #     print(f"{reiksme}: {kiekis}")
-
+bendras_raidziu_masyvas = []
 galimos_raides = ['a', 'b', 'c', 'd']
 
 # Trys masyvai
@@ -156,6 +156,7 @@ for _ in range(200):
 bendras_masyvas = []
 for r1, r2, r3 in zip(raidziu_masyvas_1, raidziu_masyvas_2, raidziu_masyvas_3):
     bendras_masyvas.append(r1 + r2 + r3)
+
 
 # Suskaičiuojame kiekvienos unikalios reikšmės pasikartojimus
 reiksmiu_skaicius = {}
@@ -217,3 +218,48 @@ for sk_9 in masyvas_7:
 print("Reiksmes, kurios kartojasi abiejuose masyvuose:", pasikartojancios_reiksmes_9)
 
 # Sugeneruokite 10 skaičių masyvą pagal taisyklę: Du pirmi skaičiai- atsitiktiniai nuo 5 iki 25. Trečias, pirmo ir antro suma. Ketvirtas- antro ir trečio suma. Penktas trečio ir ketvirto suma ir t.t.
+# masyvas_10 = []
+masyvas_20 = [random.randint(5, 25) for _ in range(2)]
+for i in range(8):
+    kiti_skaiciai = masyvas_20[-1] + masyvas_20[-2]
+    masyvas_20.append(kiti_skaiciai)
+print("Jungtinis masyvas:", masyvas_20)
+
+# Sugeneruokite 101 elemento masyvą su atsitiktiniais skaičiais nuo 0 iki 300.
+# Reikšmes kurios tame masyve yra ne unikalios pergeneruokite iš naujo taip, kad visos reikšmės masyve būtų unikalios.
+# Išrūšiuokite masyvą taip, kad jo didžiausia reikšmė būtų masyvo viduryje, o einant nuo jos link masyvo pradžios ir pabaigos reikšmės mažėtų.
+# Paskaičiuokite pirmos ir antros masyvo dalies sumas (neskaičiuojant vidurinės). Jeigu sumų skirtumas (modulis, absoliutus dydis) yra didesnis nei | 30 | rūšiavimą kartokite. (Kad sumos nesiskirtų viena nuo kitos daugiau nei per 30)
+masyvas_30 = [random.randint(0,300) for _ in range(101)]
+print(masyvas_30)
+masyvas_30_unikalus = random.sample(range(0,300), 101)
+print(masyvas_30_unikalus)
+print(len(masyvas_30_unikalus))
+masyvas_30_unikalus.sort(reverse=True)
+vidurys = len(masyvas_30_unikalus) // 2
+print("Gautas_masyvas:", masyvas_30_unikalus)
+deti_i = [0] * len(masyvas_30_unikalus)
+deti_i[vidurys] = masyvas_30_unikalus[0]
+kaire = vidurys - 1
+desine = vidurys + 1
+for sk_30 in range(1, len(masyvas_30_unikalus)):
+    if sk_30 % 2 == 1:
+        deti_i[kaire] = masyvas_30_unikalus[sk_30]
+        kaire -=1
+    else:
+        deti_i[desine] = masyvas_30_unikalus[sk_30]
+        desine += 1
+print("Isrusiuotas_masyvas:", deti_i)
+suma_desine = sum(deti_i[vidurys + 1:])
+suma_kaire = sum(deti_i[:vidurys])
+print("Desines puses suma:", suma_desine)
+print("Kaires puses suma:", suma_kaire)
+skirtumas = suma_kaire - suma_desine
+print("Skirtumas:", skirtumas)
+while abs(skirtumas) > 30:
+    print("nebaigta", skirtumas)
+    suma_desine = sum(deti_i[vidurys + 1:])
+    suma_kaire = sum(deti_i[:vidurys])
+    skirtumas = suma_kaire - suma_desine
+    if abs(skirtumas) <= 30:
+        break
+print("baigta", skirtumas)
